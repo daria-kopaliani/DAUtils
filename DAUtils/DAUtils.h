@@ -22,8 +22,6 @@
 + (BOOL)isIPad;
 + (BOOL)isIPhone;
 
-+ (void)showMessage:(NSString *)message withBackgroundColor:(UIColor *)color;
-
 @end
 
 @interface DAUtils (Encoding)
