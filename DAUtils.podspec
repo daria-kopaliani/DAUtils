@@ -1,6 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "DAUtils"
   s.version      = "1.0.1"
+  s.summary      = "Utils"
   s.homepage     = "https://github.com/daria-kopaliani/DAUtils.git"
   s.license      = 'MIT'
   s.author       = { "Daria Kopaliani" => "daria.kopaliani@gmail.com" }
