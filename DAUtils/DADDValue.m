@@ -17,7 +17,7 @@
 
 + (CGFloat)CGFloatWithIPadValue:(CGFloat)iPadValue iPhone3_5InchValue:(CGFloat)iPhone3_5InchValue iPhone4InchValue:(CGFloat)iPhone4InchValue
 {
-    return [BEUtils deviceIdiomIPad] ? iPadValue : [BEUtils is3_5InchIPhone] ? iPhone3_5InchValue : iPhone4InchValue;
+    return [DAUtils deviceIdiomIPad] ? iPadValue : [DAUtils is3_5InchIPhone] ? iPhone3_5InchValue : iPhone4InchValue;
 }
 
 + (CGFloat)CGFloatWithIPadValue:(CGFloat)iPadValue iPhoneValue:(CGFloat)iPhoneValue
@@ -27,31 +27,31 @@
 
 + (CGFloat)CGFloatWithIPhone3_5InchValue:(CGFloat)iPhone3_5InchValue iPhone4InchValue:(CGFloat)iPhone4InchValue
 {
-    return [BEUtils is4InchIPhone] ? iPhone4InchValue : iPhone3_5InchValue;
+    return [DAUtils is4InchIPhone] ? iPhone4InchValue : iPhone3_5InchValue;
 }
 
 #pragma mark - CGPoint
 
 + (CGPoint)CGPointWithIPadValue:(CGPoint)iPadValue iPhoneValue:(CGPoint)iPhoneValue
 {
-    return [BEUtils deviceIdiomIPad] ? iPadValue : iPhoneValue;
+    return [DAUtils deviceIdiomIPad] ? iPadValue : iPhoneValue;
 }
 
 + (CGPoint)CGPointWithIPadValue:(CGPoint)iPadValue iPhone3_5InchValue:(CGPoint)iPhoneValue iPhone4InchValue:(CGPoint)iPhone4InchValue
 {
-    return [BEUtils deviceIdiomIPad] ? iPadValue : [BEUtils is4InchIPhone] ? iPhone4InchValue : iPhoneValue;
+    return [DAUtils deviceIdiomIPad] ? iPadValue : [DAUtils is4InchIPhone] ? iPhone4InchValue : iPhoneValue;
 }
 
 + (CGPoint)CGPointWithIPhone3_5InchValue:(CGPoint)iPhone3_5InchValue iPhone4InchValue:(CGPoint)iPhone4InchValue
 {
-    return [BEUtils is4InchIPhone] ? iPhone4InchValue : iPhone3_5InchValue;
+    return [DAUtils is4InchIPhone] ? iPhone4InchValue : iPhone3_5InchValue;
 }
 
 #pragma mark - CGRect
 
 + (CGRect)CGRectWithIPadValue:(CGRect)iPadValue iPhone3_5InchValue:(CGRect)iPhoneValue iPhone4InchValue:(CGRect)iPhone4InchValue
 {
-    return [BEUtils deviceIdiomIPad] ? iPadValue : [BEUtils is4InchIPhone] ? iPhone4InchValue : iPhoneValue;
+    return [DAUtils deviceIdiomIPad] ? iPadValue : [DAUtils is4InchIPhone] ? iPhone4InchValue : iPhoneValue;
 }
 
 + (CGRect)CGRectWithIPadValue:(CGRect)iPadValue iPhoneValue:(CGRect)iPhoneValue
@@ -63,14 +63,14 @@
 
 + (CGSize)CGSizeWithIPadValue:(CGSize)iPadValue iPhoneValue:(CGSize)iPhoneValue
 {
-    return [BEUtils deviceIdiomIPad] ? iPadValue : iPhoneValue;
+    return [DAUtils deviceIdiomIPad] ? iPadValue : iPhoneValue;
 }
 
 #pragma mark - NSInteger
 
 + (NSInteger)NSIntegerWithIPadValue:(NSInteger)iPadValue iPhone3_5InchValue:(NSInteger)iPhone3_5InchValue iPhone4InchValue:(NSInteger)iPhone4InchValue
 {
-    return [BEUtils deviceIdiomIPad] ? iPadValue : [BEUtils is3_5InchIPhone] ? iPhone3_5InchValue : iPhone4InchValue;
+    return [DAUtils deviceIdiomIPad] ? iPadValue : [DAUtils is3_5InchIPhone] ? iPhone3_5InchValue : iPhone4InchValue;
 }
 
 + (NSInteger)NSIntegerWithIPadValue:(NSInteger)iPadValue iPhoneValue:(NSInteger)iPhoneValue
@@ -84,7 +84,7 @@
 + (NSString *)stringWithIPadValue:(NSString *)iPadValue iPhone3_5InchValue:(NSString *)iPhone3_5InchValue
                  iPhone4InchValue:(NSString *)iPhone4InchValue
 {
-    return [BEUtils deviceIdiomIPad] ? iPadValue : [BEUtils is4InchIPhone] ? iPhone4InchValue : iPhone3_5InchValue;
+    return [DAUtils deviceIdiomIPad] ? iPadValue : [DAUtils is4InchIPhone] ? iPhone4InchValue : iPhone3_5InchValue;
 }
 
 + (NSString *)stringWithIPadValue:(NSString *)iPadValue iPhoneValue:(NSString *)iPhoneValue

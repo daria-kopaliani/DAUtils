@@ -3,7 +3,7 @@
 //  Beat
 //
 //  Created by Daria Kopaliani on 1/30/13.
-//  Copyright (c) 2013 nLink. All rights reserved.
+//  Copyright (c) Daria Kopaliani. All rights reserved.
 //
 
 #import "DAErrorLogger.h"

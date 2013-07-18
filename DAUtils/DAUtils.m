@@ -1,9 +1,8 @@
 //
 //  DAUtils.m
-//  Beat
 //
 //  Created by Daria Kopaliani on 1/18/13.
-//  Copyright (c) 2013 nLink. All rights reserved.
+//  Copyright (c) Daria Kopaliani. All rights reserved.
 //
 
 #import "DAUtils.h"

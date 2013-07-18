@@ -3,7 +3,7 @@
 //  Beat
 //
 //  Created by Daria Kopaliani on 1/18/13.
-//  Copyright Daria Kopaliani. All rights reserved.
+//  Copyright (c) Daria Kopaliani. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
