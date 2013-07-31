@@ -36,7 +36,7 @@
                                                destructiveButtonTitle:(destructiveButtonTitleKey) ? NSLocalizedString(destructiveButtonTitleKey, nil) : nil
                                                    otherButtonTitles:nil];
     for (NSInteger i = 0; i < otherButtonTitleKeys.count; i++) {
-        NSString *key = SAFE_CAST(otherButtonTitleKeys[i], NSString);
+        NSString *key = [otherButtonTitleKeys[i] isKindOfClass:[NSString class]] ? otherButtonTitleKeys[i] : nil;
         if (key) {
             [actionSheet addButtonWithTitle:NSLocalizedString(key, nil)];
         }
