@@ -33,60 +33,54 @@
 
 - (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey
 {
-    [self showAlertWithTitleKey:titleKey messageKey:messageKey dismissKey:dismissKey actionKey:nil completion:nil];
+    [self showAlertWithTitleKey:titleKey messageKey:messageKey dismissKey:dismissKey actionKey:nil invertButtons:NO completion:nil];
+}
+
+- (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey
+                   completion:(void (^)(UIAlertView *sender, NSInteger clickedButtonIndex))completion
+{
+    [self showAlertWithTitleKey:titleKey messageKey:messageKey dismissKey:dismissKey actionKey:nil invertButtons:NO completion:completion];
 }
 
 - (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey actionKey:(NSString *)actionKey
-                   completion:(void (^)(void))completion
-
+                invertButtons:(BOOL)shouldInvertButtons
+                   completion:(void (^)(UIAlertView *sender, NSInteger clickedButtonIndex))completion
 {
     UIAlertView *alertView = nil;
     if (actionKey) {
+        NSString *cancelButtonTitle = (shouldInvertButtons) ? NSLocalizedString(actionKey, nil) : NSLocalizedString(dismissKey, nil);
+        NSString *actionButtonTitle = (shouldInvertButtons) ? NSLocalizedString(dismissKey, nil) : NSLocalizedString(actionKey, nil);
         alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(titleKey, nil)
                                                message:NSLocalizedString(messageKey, nil)
                                               delegate:self
-                                     cancelButtonTitle:NSLocalizedString((dismissKey ? dismissKey : @"Generic_btn_dismiss"), nil)
-                                     otherButtonTitles:actionKey, nil];
-        if (completion) {
-            objc_setAssociatedObject(alertView, @"completion", completion, OBJC_ASSOCIATION_COPY);
-        }
+                                     cancelButtonTitle:cancelButtonTitle
+                                     otherButtonTitles:actionButtonTitle, nil];
+        objc_setAssociatedObject(alertView, @"invertedButtons", [NSNumber numberWithBool:shouldInvertButtons], OBJC_ASSOCIATION_COPY);
     } else {
         alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(titleKey, nil)
                                                message:NSLocalizedString(messageKey, nil)
                                               delegate:self
-                                     cancelButtonTitle:NSLocalizedString((dismissKey ? dismissKey : @"Generic_btn_dismiss"), nil)
+                                     cancelButtonTitle:NSLocalizedString(dismissKey, nil)
                                      otherButtonTitles:nil];
     }
-    [alertView show];
-}
-
-- (void)showAuthenticationErrorAlertViewWithCompletionHandler:(void (^)(void))completionHandler
-{
-    if (!_authenticationErrorAlertView) {
-        _authenticationErrorAlertView = [[UIAlertView alloc] initWithTitle:nil
-                                                                   message:NSLocalizedString(@"Generic_alertMessage_authenticationError", nil)
-                                                                  delegate:self
-                                                         cancelButtonTitle:NSLocalizedString(@"Generic_btn_dismiss", nil)
-                                                         otherButtonTitles:nil];
-        objc_setAssociatedObject(_authenticationErrorAlertView, @"cancellation", completionHandler, OBJC_ASSOCIATION_COPY);
+    if (completion) {
+        objc_setAssociatedObject(alertView, @"completion", completion, OBJC_ASSOCIATION_COPY);
     }
-    [self.authenticationErrorAlertView show];
+    [alertView show];
 }
 
 #pragma mark - UIAlertView delegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex != alertView.cancelButtonIndex) {
-        void (^nonCancelCallback)(BOOL disableStreamingOnWifiOnly) = objc_getAssociatedObject(alertView, @"completion");
-        if (nonCancelCallback) {
-            [nonCancelCallback invoke];
+    void (^callback)(UIAlertView *sender, NSInteger clickedButtonIndex) = objc_getAssociatedObject(alertView, @"completion");
+    if (callback) {
+        NSInteger clickedButtonIndex = buttonIndex;
+        NSNumber *invertedButtons = objc_getAssociatedObject(alertView, @"invertedButtons");
+        if ([invertedButtons boolValue]) {
+            clickedButtonIndex = (buttonIndex == 0) ? 1 : 0;
         }
-    } else {
-        void (^cancelCallback)(BOOL disableStreamingOnWifiOnly) = objc_getAssociatedObject(alertView, @"cancellation");
-        if (cancelCallback) {
-            [cancelCallback invoke];
-        }
+        callback(alertView, clickedButtonIndex);
     }
 }
 

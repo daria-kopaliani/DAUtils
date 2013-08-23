@@ -13,8 +13,10 @@
 + (instancetype)sharedFactory;
 
 - (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey;
+- (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey
+                   completion:(void (^)(UIAlertView *sender, NSInteger clickedButtonIndex))completion;
 - (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey actionKey:(NSString *)actionKey
-                   completion:(void (^)(void))completion;
-- (void)showAuthenticationErrorAlertViewWithCompletionHandler:(void (^)(void))completionHandler;
+                invertButtons:(BOOL)shouldInvertButtons
+                   completion:(void (^)(UIAlertView *sender, NSInteger clickedButtonIndex))completion;
 
 @end
