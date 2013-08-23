@@ -33,18 +33,30 @@
 
 - (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey
 {
-    [self showAlertWithTitleKey:titleKey messageKey:messageKey dismissKey:dismissKey completion:nil];
+    [self showAlertWithTitleKey:titleKey messageKey:messageKey dismissKey:dismissKey actionKey:nil completion:nil];
 }
 
-- (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey
+- (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey actionKey:(NSString *)actionKey
                    completion:(void (^)(void))completion
+
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(titleKey, nil)
-                                                        message:NSLocalizedString(messageKey, nil)
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString((dismissKey ? dismissKey : @"Generic_btn_dismiss"), nil)
-                                              otherButtonTitles:nil];
-    objc_setAssociatedObject(alertView, @"cancellation", completion, OBJC_ASSOCIATION_COPY);
+    UIAlertView *alertView = nil;
+    if (actionKey) {
+        alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(titleKey, nil)
+                                               message:NSLocalizedString(messageKey, nil)
+                                              delegate:self
+                                     cancelButtonTitle:NSLocalizedString((dismissKey ? dismissKey : @"Generic_btn_dismiss"), nil)
+                                     otherButtonTitles:actionKey, nil];
+        if (completion) {
+            objc_setAssociatedObject(alertView, @"completion", completion, OBJC_ASSOCIATION_COPY);
+        }
+    } else {
+        alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(titleKey, nil)
+                                               message:NSLocalizedString(messageKey, nil)
+                                              delegate:self
+                                     cancelButtonTitle:NSLocalizedString((dismissKey ? dismissKey : @"Generic_btn_dismiss"), nil)
+                                     otherButtonTitles:nil];
+    }
     [alertView show];
 }
 

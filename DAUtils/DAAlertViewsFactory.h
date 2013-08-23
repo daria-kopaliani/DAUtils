@@ -13,7 +13,7 @@
 + (instancetype)sharedFactory;
 
 - (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey;
-- (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey
+- (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey actionKey:(NSString *)actionKey
                    completion:(void (^)(void))completion;
 - (void)showAuthenticationErrorAlertViewWithCompletionHandler:(void (^)(void))completionHandler;
 
