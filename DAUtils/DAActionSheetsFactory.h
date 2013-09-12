@@ -12,6 +12,6 @@
 
 + (instancetype)sharedFactory;
 
-- (UIActionSheet *)actionSheetWithTitleKey:(NSString *)titleKey cancelButtonTitleKey:(NSString *)cancelButtonTitleKey destructiveButtonTitleKey:(NSString *)destructiveButtonTitleKey otherButtonTitleKeys:(NSArray *)otherButtonTitleKeys completionHandler:(void (^)(NSInteger clickedButtonIndex))completionHandler;
+- (UIActionSheet *)actionSheetWithTitleKey:(NSString *)titleKey cancelButtonTitleKey:(NSString *)cancelButtonTitleKey destructiveButtonTitleKey:(NSString *)destructiveButtonTitleKey otherButtonTitleKeys:(NSArray *)otherButtonTitleKeys completionHandler:(void (^)(UIActionSheet *sender, NSInteger clickedButtonIndex))completionHandler;
 
 @end
