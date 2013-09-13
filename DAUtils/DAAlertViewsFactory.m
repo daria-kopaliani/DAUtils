@@ -31,6 +31,14 @@
     return factory;
 }
 
+- (void)showAlertView:(UIAlertView *)alertView withCompletion:(void (^)(UIAlertView *sender, NSInteger clickedButtonIndex))completion
+{
+    if (completion) {
+        objc_setAssociatedObject(alertView, @"completion", completion, OBJC_ASSOCIATION_COPY);
+    }
+    [alertView show];
+}
+
 - (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey
 {
     [self showAlertWithTitleKey:titleKey messageKey:messageKey dismissKey:dismissKey actionKey:nil invertButtons:NO completion:nil];
@@ -63,10 +71,7 @@
                                      cancelButtonTitle:NSLocalizedString(dismissKey, nil)
                                      otherButtonTitles:nil];
     }
-    if (completion) {
-        objc_setAssociatedObject(alertView, @"completion", completion, OBJC_ASSOCIATION_COPY);
-    }
-    [alertView show];
+    [self showAlertView:alertView withCompletion:completion];
 }
 
 #pragma mark - UIAlertView delegate

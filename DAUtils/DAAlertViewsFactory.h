@@ -12,6 +12,7 @@
 
 + (instancetype)sharedFactory;
 
+- (void)showAlertView:(UIAlertView *)alertView withCompletion:(void (^)(UIAlertView *sender, NSInteger clickedButtonIndex))completion;
 - (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey;
 - (void)showAlertWithTitleKey:(NSString *)titleKey messageKey:(NSString *)messageKey dismissKey:(NSString *)dismissKey
                    completion:(void (^)(UIAlertView *sender, NSInteger clickedButtonIndex))completion;
