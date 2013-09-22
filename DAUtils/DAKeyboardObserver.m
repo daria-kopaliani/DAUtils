@@ -34,8 +34,8 @@
     self = [super init];
     if (self) {
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-		[notificationCenter addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-		[notificationCenter addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardWillHideNotification object:nil];
+		[notificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+		[notificationCenter addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     }
     return self;
 }
@@ -52,7 +52,7 @@
     self.keyboardVisible = NO;
 }
 
-- (void)keyboardDidShow:(NSNotification *)notification
+- (void)keyboardWillShow:(NSNotification *)notification
 {
     self.keyboardVisible = YES;
 }
