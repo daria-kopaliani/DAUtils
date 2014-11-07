@@ -12,6 +12,7 @@
 
 + (instancetype)sharedImageCache;
 
+- (NSString *)imagesDirectoryPath;
 - (UIImage *)imageFromMemoryCacheForKey:(NSString *)key;
 - (void)loadImageForKey:(NSString *)key completion:(void (^)(UIImage *image, NSString *key))completion;
 - (void)purgeMemoryCache;
