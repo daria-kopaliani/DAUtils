@@ -99,7 +99,7 @@ static BEDeviceInfo DeviceInfo;
 
 + (BOOL)is3_5InchIPhone
 {
-    return [self isIPhone] && ![self is4InchIPhone];
+    return ([UIScreen mainScreen].bounds.size.height == 480.);
 }
 
 + (BOOL)isIPad
